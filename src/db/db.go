@@ -6,7 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-const CConnectString = "root:wang473890@tcp(localhost:3306)/wang?charset=utf8"
+const CConnectString = "root:meizizi@tcp(176.122.165.37:3306)/king?charset=utf8"
 
 type Context struct {
 	Db *sql.DB
