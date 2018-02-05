@@ -19,7 +19,7 @@ func Delete(c *gin.Context) {
 		log.Fatalln(err)
 	}
 	fmt.Println("111")
-	rs, err := db.DevContext.Db.Exec("DELETE FROM person WHERE id=?", id)
+	rs, err := db.DevContext.Db.Exec("DELETE FROM tbl_person WHERE id=?", id)
 	if err != nil {
 		log.Fatalln(err)
 	}

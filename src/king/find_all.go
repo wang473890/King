@@ -9,7 +9,7 @@ import (
 )
 
 func FindAll(c *gin.Context) {
-	rows, err := db.DevContext.Db.Query("SELECT id, first_name, last_name FROM person")
+	rows, err := db.DevContext.Db.Query("SELECT id, first_name, last_name FROM tbl_person")
 	if err != nil {
 		log.Fatalln(err)
 	}

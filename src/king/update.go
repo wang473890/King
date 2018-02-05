@@ -21,7 +21,7 @@ func Update(c *gin.Context) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	stmt, err := db.DevContext.Db.Prepare("UPDATE person SET first_name=?, last_name=? WHERE id=?")
+	stmt, err := db.DevContext.Db.Prepare("UPDATE tbl_person SET first_name=?, last_name=? WHERE id=?")
 	defer stmt.Close()
 	if err != nil {
 		log.Fatalln(err)

@@ -15,7 +15,7 @@ func Add(c *gin.Context) {
 	firstName := c.DefaultQuery("first_name", "Guest")
 	lastName := c.Query("last_name")
 	//c.String(http.StatusOK, "Hello %s %s", firstName, lastName)
-	rs, err := db.DevContext.Db.Exec("INSERT INTO person(first_name, last_name) VALUES (?, ?)", firstName, lastName)
+	rs, err := db.DevContext.Db.Exec("INSERT INTO tbl_person(first_name, last_name) VALUES (?, ?)", firstName, lastName)
 	if err != nil {
 		log.Fatalln(err)
 	}

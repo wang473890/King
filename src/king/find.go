@@ -14,7 +14,7 @@ import (
 func Find(c *gin.Context) {
 	id := c.Query("id")
 	var person model.Person
-	err := db.DevContext.Db.QueryRow("SELECT id, first_name, last_name FROM person WHERE id=?", id).Scan(
+	err := db.DevContext.Db.QueryRow("SELECT id, first_name, last_name FROM tbl_person WHERE id=?", id).Scan(
 		&person.Id, &person.FirstName, &person.LastName,
 	)
 	if err != nil {

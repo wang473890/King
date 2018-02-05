@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"db"
 	"redis"
+	"city"
 )
 
 func Main() {
@@ -22,5 +23,6 @@ func Main() {
 	router.GET("/king/update", Update)
 	router.GET("/king/set", Set)
 	router.GET("/king/get", Get)
+	router.GET("/city/list", city.CityList)
 	router.Run(":8010")
 }
