@@ -5,9 +5,9 @@ import (
 	"fmt"
 )
 
-const REDISCONNECTSTRING = "176.122.165.37:6379";
+const REDISCONNECTSTRING = "140.143.234.207:6379";
 
-const REIDS_PASSWORD = "meizizi";
+const REIDS_PASSWORD = "wanggang123";
 
 type RedisConn struct {
 	redis.Conn
