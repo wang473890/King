@@ -1,0 +1,5 @@
+package king
+
+func Weather() {
+
+}

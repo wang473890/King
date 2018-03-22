@@ -1,11 +1,12 @@
 package main
 
 import (
-	"king"
 	"github.com/gin-gonic/gin"
+	"king"
 )
 
 func main() {
 	gin.SetMode(gin.ReleaseMode)
+	//gin.SetMode(gin.ReleaseMode)
 	king.Main()
 }

@@ -3,12 +3,10 @@ package redis
 import (
 	"github.com/garyburd/redigo/redis"
 	"fmt"
+	"config"
 )
 
-const REDISCONNECTSTRING = "140.143.234.207:6379";
-
-const REIDS_PASSWORD = "wanggang123";
-
+//redis接口
 type RedisConn struct {
 	redis.Conn
 }
@@ -16,17 +14,16 @@ type RedisConn struct {
 var DevRedeisConn RedisConn
 
 func InitRedisConn() {
-	conn, err := redis.Dial("tcp", REDISCONNECTSTRING)
+	conn, err := redis.Dial("tcp", config.DevCtx.RedisIp)
 	//conn , err := redis.DialTimeout("tcp", REDISCONNECTSTRING, 0, 1*time.Second, 1*time.Second)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	if _, err := conn.Do("AUTH", REIDS_PASSWORD); err != nil {
-		conn.Close()
+	if _, err := conn.Do("AUTH", config.DevCtx.RedisPass); err != nil {
 		fmt.Println(err)
 	}
-	DevRedeisConn.Conn = conn;
+	DevRedeisConn.Conn = conn
 }
 
 func (*RedisConn) RedisSet(key, value string, expire int) (bool, error) {
