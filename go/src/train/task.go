@@ -48,7 +48,7 @@ type MgoData struct {
 
 func TimeTask() {
 	//新建日志文件
-	logfile, err := os.OpenFile("/Users/wanggang/Documents/doc/学习/test/go/king/logs/time_task.log", os.O_RDWR|os.O_CREATE, 0666)
+	logfile, err := os.OpenFile("/data/code/website/king/logs/time_task.log", os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
 		fmt.Printf("%s\r\n", err.Error())
 		os.Exit(-1)
