@@ -1,5 +1,0 @@
-package king
-
-func Weather() {
-
-}
