@@ -10,5 +10,6 @@ func Main(){
 	db.InitSessions()
 	defer db.Mgo.MgoSession.Close()
 	router.GET("/test",GetData)
+	router.POST("/post_row",PostRow)
 	router.Run(":8001")
 }
