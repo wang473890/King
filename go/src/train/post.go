@@ -10,6 +10,7 @@ import (
 
 type PostData struct {
 	Data       interface{} `json:"data" bson:"data"`
+	ErrorStr string `json:"str" bson:"str"`
 	CreateTime int64       `json:"create_time" bson:"create_time"`
 }
 
@@ -18,17 +19,20 @@ func PostRow(c *gin.Context) {
 	//参数获取json
 	n, _ := c.Request.Body.Read(buf)
 	var data interface{}
-	if e := json.Unmarshal([]byte(string(buf[0:n])), &data); e != nil {
-		c.JSON(http.StatusOK, gin.H{
-			"code":  1000,
-			"msg":   "post fail",
-			"error": e,
-			"data":  string(buf[0:n]),
-		})
-		return
-	}
 	var postData PostData
-	postData.Data = data
+
+	if e := json.Unmarshal([]byte(string(buf[0:n])), &data); e != nil {
+		//c.JSON(http.StatusOK, gin.H{
+		//	"code":  1000,
+		//	"msg":   "post fail",
+		//	"error": e,
+		//	"data":  string(buf[0:n]),
+		//})
+		//return
+		postData.ErrorStr = string(buf[0:n])
+	} else {
+		postData.Data = data
+	}
 	postData.CreateTime = time.Now().Unix()
 	tbs := "house_task"
 	if e := db.Mgo.MgoSession.DB(db.Mgo.MgoDb).C(tbs).Insert(&postData); e != nil {
