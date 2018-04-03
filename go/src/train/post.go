@@ -17,18 +17,21 @@ func PostRow(c *gin.Context) {
 	buf := make([]byte, 1024)
 	//参数获取json
 	n, _ := c.Request.Body.Read(buf)
-	var data PostData
-	if e := json.Unmarshal([]byte(string(buf[0:n])), &data.Data); e != nil {
+	var data interface{}
+	if e := json.Unmarshal([]byte(string(buf[0:n])), &data); e != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":  1000,
 			"msg":   "post fail",
 			"error": e,
+			"data":  string(buf[0:n]),
 		})
 		return
 	}
-	data.CreateTime = time.Now().Unix()
+	var postData PostData
+	postData.Data = data
+	postData.CreateTime = time.Now().Unix()
 	tbs := "house_task"
-	if e := db.Mgo.MgoSession.DB(db.Mgo.MgoDb).C(tbs).Insert(&data); e != nil {
+	if e := db.Mgo.MgoSession.DB(db.Mgo.MgoDb).C(tbs).Insert(&postData); e != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":  1001,
 			"msg":   "storage fail",
@@ -39,6 +42,6 @@ func PostRow(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": 0,
 		"msg":  "ok",
-		"data": data,
+		"data": postData,
 	})
 }
