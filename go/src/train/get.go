@@ -69,7 +69,7 @@ func GetData(c *gin.Context) {
 		mgoData[int(i)].UpdateTime = time.Now().Unix()
 	}
 	for i := 0; i < l; i++ {
-		e = db.Mgo.MgoSession.DB(db.Mgo.MgoDb).C(db.Mgo.MgoTable).Insert(&mgoData[i])
+		e = db.Mgo.MgoSession.DB("db_train").C("tbl_train_daily").Insert(&mgoData[i])
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
 				"code": "存储错误",

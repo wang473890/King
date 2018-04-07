@@ -34,8 +34,7 @@ func PostRow(c *gin.Context) {
 		postData.Data = data
 	}
 	postData.CreateTime = time.Now().Unix()
-	tbs := "house_task"
-	if e := db.Mgo.MgoSession.DB(db.Mgo.MgoDb).C(tbs).Insert(&postData); e != nil {
+	if e := db.Mgo.MgoSession.DB("db_train").C("house_task").Insert(&postData); e != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":  1001,
 			"msg":   "storage fail",

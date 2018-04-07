@@ -13,17 +13,14 @@ type DevMgo struct {
 	MgoTable    string
 }
 
-var Mgo = DevMgo{
-	MgoDb:    "db_train",
-	MgoTable: "tbl_train_daily",
-}
+var Mgo = DevMgo{}
 
 type DevDBText struct {
 	ProjectId  string `json:"ProjectId,omitempty" bson:"_id"`
 	ConnString string `json:"ConnString,omitempty" bson:"connString"`
 }
 
-func InitSessions() {
+func InitMgo() {
 
 	var err error
 	//init mongodb

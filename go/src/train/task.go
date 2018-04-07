@@ -101,7 +101,7 @@ func TimeTask() {
 	}
 	logger.Println("***************************", mgoData, "***************************")
 	for i := 0; i < l; i++ {
-		e = db.Mgo.MgoSession.DB(db.Mgo.MgoDb).C(db.Mgo.MgoTable).Insert(&mgoData[i])
+		e = db.Mgo.MgoSession.DB("db_train").C("tbl_train_daily").Insert(&mgoData[i])
 		if e != nil {
 			logger.Println("***************************存储错误***************************")
 			return

@@ -7,7 +7,7 @@ import (
 
 func Main(){
 	router := gin.Default()
-	db.InitSessions()
+	db.InitMgo()
 	defer db.Mgo.MgoSession.Close()
 	router.GET("/test",GetData)
 	router.POST("/post_row",PostRow)
