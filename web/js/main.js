@@ -7,6 +7,7 @@
     var input = $('.validate-input .input100');
 
     $('.validate-form').on('submit', function () {
+
         var check = true;
 
         for (var i = 0; i < input.length; i++) {
@@ -15,8 +16,27 @@
                 check = false;
             }
         }
+        if(!check){
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "localhost:8000/login",
+            data: {name:$('[name=name]').val().trim(),pass:$('[name=pass]').val().trim()},
+            success: function(){
+                alert('success');
+            },
+            dataType: 'json'
+        });
+        alert($('[name=name]').val().trim())
 
-        return check;
+        // $.post(
+        //     url: "localhost:8000/login",
+        //     data: {name:$('[name=name]').val().trim(),pass:$('[name=pass]').val().trim()},
+        //     function(result){
+        // alert("登陆成功")
+        // });
+
     });
 
 

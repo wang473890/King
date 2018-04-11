@@ -15,7 +15,7 @@ type PostData struct {
 }
 
 func PostRow(c *gin.Context) {
-	buf := make([]byte, 90000000)
+	buf := make([]byte, 1024*1024*1024)
 	//参数获取json
 	n, _ := c.Request.Body.Read(buf)
 	var data interface{}

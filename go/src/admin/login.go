@@ -11,6 +11,7 @@ import (
 )
 
 func Login(c *gin.Context) {
+	c.Header("Access-Control-Allow-Origin", "*")
 	var admin TplAdmin
 	var l int
 	name := c.PostForm("name")
@@ -24,7 +25,7 @@ func Login(c *gin.Context) {
 	}
 	pass := c.PostForm("pass")
 	l = len(pass)
-	if 6 < l && 12 > l {
+	if 6 > l && 12 < l {
 		c.JSON(http.StatusOK, gin.H{
 			"msg":  "请输入6到12位密码",
 			"code": 20002,
