@@ -21,7 +21,7 @@
         }
         $.ajax({
             type: 'POST',
-            url: "localhost:8000/login",
+            url: "wg2019.cn/go/login",
             data: {name:$('[name=name]').val().trim(),pass:$('[name=pass]').val().trim()},
             success: function(){
                 alert('success');
