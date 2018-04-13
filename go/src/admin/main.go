@@ -19,5 +19,6 @@ func Main() {
 	router.POST("/logout", Logout)
 	router.POST("/check", Check)
 	router.POST("/test", Test)
+	router.GET("html", Html)
 	router.Run(":8000")
 }
